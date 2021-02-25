@@ -2,7 +2,7 @@
 
 This repo contains a collection of DEG starter content models and content entries for [Contentful](https://https://www.contentful.com/).
 
-By importing a starter model at the beginning of your project (using the [Contentful CLI](https://github.com/contentful/contentful-cli) `import` command), you can seed your Contentful space with common content types and entries. This can improve your model's reusability and flexibility, and accelerate project development.
+By importing a starter model at the beginning of your project (using the [Contentful CLI](https://github.com/contentful/contentful-cli) `import` command), you can seed your new Contentful space with common content types and entries. This can improve your model's reusability and flexibility, and accelerate project development.
 
 ## Choosing a model
 
