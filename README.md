@@ -6,7 +6,7 @@ By importing a starter model at the beginning of your project (using the [Conten
 
 ## Choosing a model
 
-For most web projects at DEG, the `general-purpose-model.json` model is a good starting point (and let's be honest -- it's the only one right now).
+For most web projects at DEG, the [general-purpose-model.json model](https://github.com/degdigital/contentful-starter-content-models/blob/main/general-purpose-model.json) is a good starting point (and let's be honest -- it's the only one we have right now).
 
 ## Installation
 
