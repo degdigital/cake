@@ -1,4 +1,4 @@
-# Contentful Starter Content Models for DEG
+# DEG Contentful Starter Kit
 
 This repo contains a collection of DEG starter content models and content entries for [Contentful](https://https://www.contentful.com/).
 
