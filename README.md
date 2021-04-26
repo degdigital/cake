@@ -10,8 +10,6 @@ Specifically, it includes:
 - Plop templates to accelerate writing GraphQL queries
 - Sample migration scripts and GraphQL queries
 
-Cake works best as an automated scaffolding tool on new projects. However, see [Manual Setup](#) for information on adding it to an existing project or Contentful space.
-
 ## Table of Contents
 
 - [Cake 🎂](#cake-)
