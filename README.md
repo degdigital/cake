@@ -6,6 +6,7 @@ Specifically, it includes:
 
 - Automated Contentful space, environment and API key creation
 - Automated installation and Contentful configuration of the [DEG Next.js Starter](https://github.com/degdigital/deg-nextjs-starter)
+- A prepopulated content model for most common content types, in sync with DEG's [content modeling documentation and best practices](https://degdigital.atlassian.net/wiki/spaces/WCMPA/pages/2014347265/Content+Modeling)
 - VS Code snippets to accelerate writing migration scripts
 - Plop templates to accelerate writing GraphQL queries
 - Sample migration scripts and GraphQL queries
