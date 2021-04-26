@@ -1,0 +1,129 @@
+{
+  "Create New Content Type": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "module.exports = migration => {",
+      "const migrationContentType = migration",
+      "  .createContentType('newContentTypeName')",
+      "  .name('Content Type Name')",
+      "  .description('Content Type Description');",
+      "",
+      "migrationContentType.createField('internalName')",
+      "  .name('Internal Name')",
+      "  .type('Symbol')",
+      "  .required(true);",
+      "",
+      "migrationContentType.displayField('internalName');",
+      "};"
+    ],
+    "description": "Create New Content Type"
+  },
+  "Edit Existing Content Type": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "module.exports = migration => {",
+      "  const migrationContentType = migration.editContentType('existingContentTypeName');",
+      "};"
+    ],
+    "description": "Edit Existing Content Type"
+  },
+  "Create Content Type Internal Name Field": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "migrationContentType.createField('internalName')",
+      "  .name('Internal Name')",
+      "  .type('Symbol')",
+      "  .required(true);",
+      "",
+      "migrationContentType.displayField('internalName');"
+    ],
+    "description": "Create Short Text Field"
+  },
+  "Create Short Text Field": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "migrationContentType.createField('name')",
+      "  .name('Field Name')",
+      "  .type('Symbol')",
+      "  .required(true);"
+    ],
+    "description": "Create Short Text Field"
+  },
+  "Create Slug Field": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "migrationContentType.createField('slug')",
+      "  .name('Slug')",
+      "  .type('Symbol')",
+      "  .required(true)",
+      "  .validations([{ unique: true }]);",
+      "",
+      "migrationContentType.changeFieldControl('slug', 'builtin', 'slugEditor');"
+    ],
+    "description": "Create Slug Field"
+  },
+  "Create One-to-One Reference Field": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "migrationContentType.createField('name')",
+      "  .name('Field Name')",
+      "  .type('Link')",
+      "  .required(true)",
+      "  .linkType('Entry')",
+      "  .validations([{ linkContentType: ['nameOfReferenceField'] }]);"
+    ],
+    "description": "Create One-to-One Reference Field"
+  },
+  "Create One-to-Many Reference Field": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "migrationContentType.createField('name')",
+      "  .name('Field Name')",
+      "  .type('Array')",
+      "  .required(true)",
+      "  .items({",
+      "    type: 'Link',",
+      "    linkType: 'Entry',",
+      "    validations: [{",
+      "      linkContentType: 'nameOfReferenceField'",
+      "    }]",
+      "  })",
+      "  .validations([{ size: { min: 1, max: 5 } }]);"
+    ],
+    "description": "Create One-to-Many Reference Field"
+  },
+  "Create Rich Text Field": {
+    "scope": "javascript",
+    "prefix": "contentful",
+    "body": [
+      "migrationContentType.createField('name')",
+      "  .name('Field Name')",
+      "  .type('RichText')",
+      "  .required(true)",
+      "  .validations([",
+      "    {",
+      "      enabledMarks: ['bold', 'italic'],",
+      "      message: 'Only bold and italic marks are allowed'",
+      "    },",
+      "    {",
+      "      enabledNodeTypes: [",
+      "        'ordered-list',",
+      "        'unordered-list',",
+      "        'hyperlink',",
+      "        'entry-hyperlink',",
+      "        'asset-hyperlink',",
+      "      ],",
+      "      message: 'Only ordered list, unordered list, link to Url, link to entry, and link to asset nodes are allowed'",
+      "    }",
+      "  ]);"
+    ],
+    "description": "Create Rich Text Field"
+  }
+}

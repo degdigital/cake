@@ -1,0 +1,26 @@
+{
+  "name": "contentful-project",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run migrate-contentful && next build && next export",
+    "create-contentful-environment": "NAME=$npm_config_name node scripts/contentful-create-environment.js",
+    "export-contentful": "node scripts/contentful-export.js",
+    "migrate-contentful": "node scripts/contentful-migrate.js",
+    "plop": "plop",
+    "scaffold": "plop"
+  },
+  "dependencies": {
+    "contentful": "^8.2.1"
+  },
+  "devDependencies": {
+    "@contentful/rich-text-html-renderer": "^14.1.2",
+    "@contentful/rich-text-react-renderer": "^14.1.2",
+    "@contentful/rich-text-types": "^14.1.2",
+    "contentful-cli": "^1.5.33",
+    "contentful-migration": "^4.0.8",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.4.0",
+    "plop": "^2.7.4",
+    "slugify": "^1.4.7"
+  }
+}

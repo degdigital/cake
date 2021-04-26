@@ -1,0 +1,33 @@
+{
+  "name": "deg-cake",
+  "engines": {
+    "node": ">=15.4.0"
+  },
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node lib/start.js"
+  },
+  "bin": {
+    "cake": "./bin/cake.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "dependencies": {
+    "async": "^0.9.2",
+    "chalk": "^2.4.2",
+    "commander": "^7.2.0",
+    "contentful": "^8.2.1",
+    "contentful-import": "^7.9.42",
+    "contentful-management": "^7.16.0",
+    "fs-extra": "^9.1.0",
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {
+    "contentful-cli": "^1.5.33",
+    "contentful-migration": "^4.0.8",
+    "dotenv": "^8.2.0",
+    "slugify": "^1.4.7"
+  }
+}
