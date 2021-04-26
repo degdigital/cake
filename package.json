@@ -12,7 +12,9 @@
   },
   "files": [
     "bin",
-    "lib"
+    "lib",
+    "assets",
+    "models"
   ],
   "dependencies": {
     "async": "^0.9.2",
