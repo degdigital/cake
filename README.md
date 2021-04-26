@@ -14,9 +14,16 @@ Cake works best as an automated scaffolding tool on new projects. However, see [
 
 ## Table of Contents
 
-1. Getting Started
-2. Additional Configuration
-3. Manually Importing the Models
+- [Cake 🎂](#cake-)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [After Installation](#after-installation)
+    - [Environment Aliases](#environment-aliases)
+    - [Environmental Variables](#environmental-variables)
+    - [VS Code Snippets](#vs-code-snippets)
+  - [Manually Importing the Models](#manually-importing-the-models)
 
 ## Getting Started
 
@@ -34,7 +41,7 @@ Cake works best as an automated scaffolding tool on new projects. However, see [
 4. Cake will begin its tasks, which includes setting up Contentful, installing the DEG Next.js Starter, and copying over essential files. This can take several minutes.
 5. Once Cake finishes, you're ready to use your Contentful-enabled Next.js project! In your terminal, navigate into your new project's directory, and type `npm run dev` to start Next.js in development mode.
 
-### After Installation
+## After Installation
 
 Due to limitations in the Contentful CLI, there are a few manual steps you must take after Cake finishes its installation:
 
@@ -63,8 +70,8 @@ Cake adds a `.vscode` directory in your project's codebase containing useful sni
 ## Manually Importing the Models
 
 > **Please note:** If you've run the Cake installer, everything outlined in this section is already set up for you.
->
-> By importing a starter model at the beginning of your project (using the [Contentful CLI](https://github.com/contentful/contentful-cli) `import` command), you can seed your new Contentful space with common content types and entries. This can improve your model's reusability and flexibility, and accelerate project development.
+
+By importing a starter model at the beginning of your project (using the [Contentful CLI](https://github.com/contentful/contentful-cli) `import` command), you can seed your new Contentful space with common content types and entries. This can improve your model's reusability and flexibility, and accelerate project development.
 
 The starter models included with Cake are based on commonly reused models, patterns and best practices that have been established by DEG.
 
