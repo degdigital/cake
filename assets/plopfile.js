@@ -10,5 +10,4 @@ module.exports = plop => {
   componentGenerator(plop, settings);
   graphqlGenerator(plop, settings);
   migrationGenerator(plop, settings);
-  iconGenerator(plop, settings);
 };
