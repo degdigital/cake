@@ -11,9 +11,11 @@ if (process.env.NODE_ENV !== 'production') {
   const envVars = {
     spaceId: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
     newEnvironmentName: process.env.NAME,
+    cloneEnvironmentName: process.env.SOURCE || 'develop',
     accessToken: process.env.CONTENTFUL_PERSONAL_ACCESS_TOKEN
   };
   let newEnvironmentName;
+  let cloneEnvironmentName;
 
   const init = async () => {
     const envVarsAreSet = validateEnvVars(envVars);
@@ -25,13 +27,14 @@ if (process.env.NODE_ENV !== 'production') {
       return;
     }
     newEnvironmentName = slugify(envVars.newEnvironmentName);
+    cloneEnvironmentName = slugify(envVars.cloneEnvironmentName);
     await createSpace();
     updateEnvVarFile();
   };
 
   const createSpace = () =>
     new Promise((resolve, reject) => {
-      const cliCommand = `contentful space environment create --space-id=${envVars.spaceId} --name ${newEnvironmentName} --environment-id ${newEnvironmentName} --source master`;
+      const cliCommand = `contentful space environment create --space-id=${envVars.spaceId} --name ${newEnvironmentName} --environment-id ${newEnvironmentName} --source ${cloneEnvironmentName}`;
       exec(cliCommand, (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);

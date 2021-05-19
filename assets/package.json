@@ -4,6 +4,7 @@
   "scripts": {
     "build": "npm run migrate-contentful && next build && next export",
     "create-contentful-environment": "NAME=$npm_config_name node scripts/contentful-create-environment.js",
+    "ctf-migrate": "ctf-migrate",
     "export-contentful": "node scripts/contentful-export.js",
     "migrate-contentful": "node scripts/contentful-migrate.js",
     "plop": "plop",

@@ -5,7 +5,9 @@ Content Types: https://contentful.com/developers/docs/references/content-managem
 Editor Interfaces: https://www.contentful.com/developers/docs/extensibility/app-framework/editor-interfaces/
 */
 
-module.exports = migration => {
+module.exports.description = 'Migration script description';
+
+module.exports.up = migration => {
   const migrationContentType = migration
     .createContentType('sampleMigrationItem')
     .name('Sample Migration Content Type')
@@ -56,4 +58,9 @@ module.exports = migration => {
     .omitted(false);
 
   migrationContentType.displayField('name');
+};
+
+module.exports.down = migration => {
+  // Add your DOWN migration script here. See examples here:
+  // https://github.com/contentful/migration-cli/tree/master/examples
 };

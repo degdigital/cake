@@ -1,0 +1,13 @@
+import { fetchContentfulLoyalty } from '@utils/contentful';
+
+const {{ camelCase name }} = async () => {
+  const query = await fetchContentfulLoyalty(
+    `query {
+      # add your query
+    }`
+  );
+
+  return query;
+};
+
+export default {{ camelCase name }};

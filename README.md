@@ -34,7 +34,7 @@ Specifically, it includes:
 
 ### Installation
 
-1. Navigate in your terminal to the parent directory where you want your project to be installed. For example, if you project should live in `~/Projects/sample-project`, navigate to `~/Projects`.
+1. Navigate in your terminal to the parent directory where you want your project to be installed. For example, if your project should live in `~/Projects/sample-project`, navigate to `~/Projects`.
 2. In your terminal, type `npx github:degdigital/cake install [PROJECT-NAME]`. You may be asked to install the package locally; please accept.
 3. Cake will say hello! Follow the prompts, which will include entering your personal access token, naming your project, defining which organization you'll use, and setting up multiple environments.
 4. Cake will begin its tasks, which includes setting up Contentful, installing the DEG Next.js Starter, and copying over essential files. This can take several minutes.

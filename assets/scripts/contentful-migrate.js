@@ -1,6 +1,5 @@
-const fs = require('fs');
+const { exec } = require('child_process');
 const path = require('path');
-const { runMigration } = require('contentful-migration');
 const { validateEnvVars } = require('./utils.js');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -9,14 +8,12 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-const scriptsFolder = './migrations';
 let envVars = {
   spaceId: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
   environmentId: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
   accessToken: process.env.CONTENTFUL_PERSONAL_ACCESS_TOKEN
 };
-let filePaths;
-let options;
+let varsString;
 
 const init = () => {
   const envVarsAreSet = validateEnvVars(envVars);
@@ -27,37 +24,44 @@ const init = () => {
     console.log(envVars);
     return;
   }
-  filePaths = getFilePaths();
-  options = {
-    spaceId: envVars.spaceId,
-    environmentId: envVars.environmentId,
-    accessToken: envVars.accessToken,
-    yes: process.env.NODE_ENV === 'production' // bypasses prompt on CI/CD
-  };
-  runMigrations(filePaths);
-};
-
-const runMigrations = async filePaths => {
-  for (const filePath of filePaths) {
-    try {
-      await runMigration({
-        ...options,
-        filePath
-      });
-      console.log('Migration done!');
-    } catch (e) {
-      console.error(e);
-    }
+  varsString = `--access-token ${envVars.accessToken} --space-id ${envVars.spaceId} --environment-id ${envVars.environmentId}`;
+  const inited = await initMigration().catch(logMigrationTypeInited);
+  if (inited) {
+    logMigrationTypeInited();
   }
+  await runMigration().catch(error =>
+    console.log('Run Migration Error: ', error)
+  );
 };
 
-const getFilePaths = () => {
-  const filterNonFiles = file => file.endsWith('.js');
-  const rawDirectoryContents = fs.readdirSync(`${scriptsFolder}`);
-  const filePaths = rawDirectoryContents
-    .filter(filterNonFiles)
-    .map(file => path.resolve(process.cwd(), `${scriptsFolder}/${file}`));
-  return filePaths;
-};
+const logMigrationTypeInited = () =>
+  console.log(`Migration content type ready on ${envVars.environmentId}.`);
+
+const initMigration = () =>
+  new Promise((resolve, reject) => {
+    const cliCommand = `ctf-migrate init ${varsString}`;
+    exec(cliCommand, (error, stdout, stderr) => {
+      if (error || stderr) {
+        reject();
+      }
+      console.log(stdout);
+      resolve();
+    });
+  });
+
+const runMigration = () =>
+  new Promise((resolve, reject) => {
+    const cliCommand = `ctf-migrate up ${varsString} --all`;
+    exec(cliCommand, (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      }
+      if (stderr) {
+        reject(stderr);
+      }
+      console.log(stdout);
+      resolve();
+    });
+  });
 
 init();

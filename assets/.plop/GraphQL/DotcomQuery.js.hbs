@@ -1,0 +1,13 @@
+import { fetchContentfulDotCom } from '@utils/contentful';
+
+const {{ camelCase name }} = async () => {
+  const query = await fetchContentfulDotCom(
+    `query {
+      # add your query
+    }`
+  );
+
+  return query;
+};
+
+export default {{ camelCase name }};

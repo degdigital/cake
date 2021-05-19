@@ -3,7 +3,9 @@
     "scope": "javascript",
     "prefix": "contentful",
     "body": [
-      "module.exports = migration => {",
+      "module.exports.description = 'Migration script description';",
+      "",
+      "module.exports.up = migration => {",
       "const migrationContentType = migration",
       "  .createContentType('newContentTypeName')",
       "  .name('Content Type Name')",
@@ -15,7 +17,9 @@
       "  .required(true);",
       "",
       "migrationContentType.displayField('internalName');",
-      "};"
+      "};",
+      "",
+      "module.exports.down = migration => migration.deleteContentType('migration')"
     ],
     "description": "Create New Content Type"
   },
@@ -23,7 +27,9 @@
     "scope": "javascript",
     "prefix": "contentful",
     "body": [
-      "module.exports = migration => {",
+      "module.exports.description = 'Migration script description';",
+      "",
+      "module.exports.up = migration => {",
       "  const migrationContentType = migration.editContentType('existingContentTypeName');",
       "};"
     ],
