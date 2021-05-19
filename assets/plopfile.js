@@ -1,6 +1,6 @@
-const componentGenerator = require('./.plop/Component.generator.js');
-const graphqlGenerator = require('./.plop/GraphQL.generator.js');
-const migrationGenerator = require('./.plop/Migration.generator.js');
+const componentGenerator = require('./.plop/Component/generator.js');
+const graphqlGenerator = require('./.plop/GraphQL/generator.js');
+const migrationGenerator = require('./.plop/Migration/generator.js');
 
 module.exports = plop => {
   const settings = {
