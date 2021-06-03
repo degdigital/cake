@@ -1,0 +1,16 @@
+module.exports.description = 'Edit content model for {{titleCase name}}';
+
+module.exports.up = migration => {
+  const {{camelCase name}} = migration
+    .editContentType('{{camelCase name}}')
+    .name('{{titleCase name}}')
+    .displayField('internalName')
+    .description('Content for {{titleCase name}}')
+};
+
+module.exports.down = migration => {
+  // pass linting because it could be used in the future
+  console.log(migration);
+  // Add your DOWN migration script here. See examples here:
+  // https://github.com/contentful/migration-cli/tree/master/examples
+};

@@ -19,22 +19,6 @@ const graphqlGenerator = (plop, { basePath }) => {
           input.length !== 0 ? true : 'Please enter a directory name.',
         message: `In which subdirectory of the "graphql" directory should your query live? (i.e., "siteframe")`
       },
-      {
-        type: 'list',
-        name: 'contentfulSpace',
-        choices: [
-          {
-            name: 'Loyalty',
-            value: 'Loyalty'
-          },
-          {
-            name: 'Dotcom',
-            value: 'Dotcom'
-          }
-        ],
-        default: 'loyalty',
-        message: 'Which Contentful space are you querying?'
-      }
     ],
     actions: data => {
       let actions = [];
@@ -42,7 +26,7 @@ const graphqlGenerator = (plop, { basePath }) => {
         {
           type: 'add',
           path: `${outputPath}/{{camelCase name}}.js`,
-          templateFile: `${templatePath}/{{contentfulSpace}}Query.js.hbs`,
+          templateFile: `${templatePath}/Query.js.hbs`,
           skipIfExists: true
         },
         {

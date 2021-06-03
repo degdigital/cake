@@ -1,0 +1,31 @@
+.ContentPreviewWidget {
+  background-color: rgba(242, 242, 242, 0.9);
+  box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 25%);
+  bottom: 1rem;
+  left: 1rem;
+  padding: 1rem;
+  position: fixed;
+  z-index: 9998;
+}
+
+.Heading {
+  font-size: 1.125rem;
+}
+
+.Tooltip {
+  composes: ButtonBare from '../Button/Button.module.css';
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 0.875rem;
+  margin-left: 0.25rem;
+  width: 0.875rem;
+}
+
+.Tooltip,
+.Tooltip:hover {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NTAgNDUwIiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmluZm9fYmxhY2s8L3RpdGxlPjxnIGRhdGEtbmFtZT0iQ2FscXVlIDIiPjxnIGRhdGEtbmFtZT0iQ2FscXVlIDIiPjxwYXRoIGQ9Ik0yMjUsMEMxMDAuNzQsMCwwLDEwMC43NCwwLDIyNVMxMDAuNzQsNDUwLDIyNSw0NTAsNDUwLDM0OS4yNiw0NTAsMjI1LDM0OS4yNiwwLDIyNSwwWk0xOTksMzIyLjEydi0xMDNhMjYsMjYsMCwwLDEsNTIsMHYxMDNhMjYsMjYsMCwwLDEtNTIsMFptMjYtMTU3LjM3YTMxLjI1LDMxLjI1LDAsMSwxLDMxLjI1LTMxLjI1QTMxLjI1LDMxLjI1LDAsMCwxLDIyNSwxNjQuNzVaIj48L3BhdGg+PC9nPjwvZz48L3N2Zz4=');
+}
+
+.CloseButton {
+  composes: ButtonBare from '../Button/Button.module.css';
+}

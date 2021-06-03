@@ -1,0 +1,19 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { default as ContentPreviewWidget } from './index.js';
+import { sampleData } from './sampleData.js';
+
+<Meta 
+    title="Components/Content Preview Widget"
+    component={ ContentPreviewWidget }
+/>
+
+# Content Preview Widget
+
+<Preview>
+    <Story name="Content Preview Widget">
+        <ContentPreviewWidget {...sampleData} />
+    </Story>
+</Preview>
+
+## Props
+<Props of={ ContentPreviewWidget } />

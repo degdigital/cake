@@ -1,10 +1,16 @@
 import { fetchContentful } from '@utils/contentful';
 
-const {{ camelCase name }} = async () => {
+const {{ camelCase name }} = async (preview = false) => {
   const query = await fetchContentful(
     `query {
       # add your query
-    }`
+      siteMetadataCollection(limit: 1, preview: ${preview}) {
+        items {
+          siteName
+        }
+      }
+    }`,
+    preview
   );
 
   return query;

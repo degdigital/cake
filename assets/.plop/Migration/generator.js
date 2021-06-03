@@ -4,6 +4,8 @@ const dateformat = require('dateformat');
 const migrationGenerator = (plop, { basePath }) => {
   const migrationsDir = `./migrations`;
   const templatePath = `${basePath}/Migration`;
+  const createTemplateFilename = 'CreateMigration.js.hbs';
+  const editTemplateFilename = 'EditMigration.js.hbs';
   const outputPath = `migrations`;
   const createNewDirectoryOption = '[Create a new subdirectory]';
   let migrationsDirIsMissing = true;
@@ -47,6 +49,7 @@ const migrationGenerator = (plop, { basePath }) => {
         when: answers =>
           migrationsDirIsEmpty === true ||
           answers.directory === createNewDirectoryOption,
+        filter: input => plop.renderString('{{camelCase input}}', { input }),
         validate: input =>
           input.length !== 0
             ? true
@@ -58,6 +61,10 @@ const migrationGenerator = (plop, { basePath }) => {
       {
         type: 'input',
         name: 'name',
+        default: answers =>
+          nswers.directory !== createNewDirectoryOption
+            ? plop.renderString('{{titleCase directory}}', answers)
+            : plop.renderString('{{titleCase newDirectoryName}}', answers),
         validate: input =>
           input.length !== 0 ? true : 'Please give your content type a name.',
         message: `What's the name of your content type? (i.e., "Page Metadata")`
@@ -87,6 +94,10 @@ const migrationGenerator = (plop, { basePath }) => {
           ? data.newDirectoryName
           : data.directory;
       const date = dateformat(new Date(), 'UTC:yyyymmddHHMMss');
+      const fileName =
+        data.scriptType === 'create'
+          ? createTemplateFilename
+          : editTemplateFilename;
       return [
         {
           type: 'add',
@@ -95,7 +106,7 @@ const migrationGenerator = (plop, { basePath }) => {
             subdirectoryPath
           },
           path: `${outputPath}/{{camelCase subdirectoryPath}}/${date}-{{scriptType}}-{{dashCase name}}.js`,
-          templateFile: `${templatePath}/Migration.js.hbs`,
+          templateFile: `${templatePath}/${fileName}`,
           skipIfExists: true
         }
       ];

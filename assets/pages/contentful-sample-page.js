@@ -12,11 +12,13 @@ const ContentfulSamplePage = props => {
 
 export default ContentfulSamplePage;
 
-export const getStaticProps = async () => {
-  const sampleContent = await getSampleContent();
+export const getStaticProps = async context => {
+  const preview = context.preview || false;
+  const sampleContent = await getSampleContent(preview);
   return {
     props: {
-      ...sampleContent
+      ...sampleContent,
+      preview
     }
   };
 };

@@ -1,0 +1,35 @@
+module.exports.description = 'Create content model for {{titleCase name}}';
+
+module.exports.up = migration => {
+  const {{camelCase name}} = migration
+    .createContentType('{{camelCase name}}')
+    .name('{{titleCase name}}')
+    .displayField('internalName')
+    .description('Content for {{titleCase name}}');
+
+  {{camelCase name}}
+    .createField('internalName')
+    .name('Internal Name')
+    .type('Symbol')
+    .required(true);
+
+  {{camelCase name}}
+    .createField('slug')
+    .name('Slug')
+    .type('Symbol')
+    .required(true)
+    .validations([
+      {
+        unique: true
+      }
+    ]);
+
+  {{camelCase name}}.changeFieldControl('slug', 'builtin', 'slugEditor');
+};
+
+module.exports.down = migration => {
+  // pass linting because it could be used in the future
+  console.log(migration);
+  // Add your DOWN migration script here. See examples here:
+  // https://github.com/contentful/migration-cli/tree/master/examples
+};
