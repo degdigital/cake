@@ -62,7 +62,7 @@ const migrationGenerator = (plop, { basePath }) => {
         type: 'input',
         name: 'name',
         default: answers =>
-          nswers.directory !== createNewDirectoryOption
+          answers.directory !== createNewDirectoryOption
             ? plop.renderString('{{titleCase directory}}', answers)
             : plop.renderString('{{titleCase newDirectoryName}}', answers),
         validate: input =>
