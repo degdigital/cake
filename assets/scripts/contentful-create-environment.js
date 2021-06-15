@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
   const envVars = {
     spaceId: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
     newEnvironmentName: process.env.NAME,
-    cloneEnvironmentName: process.env.SOURCE || 'develop',
+    cloneEnvironmentName: process.env.SOURCE || 'qa',
     accessToken: process.env.CONTENTFUL_PERSONAL_ACCESS_TOKEN
   };
   let newEnvironmentName;

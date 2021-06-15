@@ -16,22 +16,63 @@ let envVars = {
 let varsString;
 
 const init = () => {
+  bindEvents();
+  checkEnvVarsAreSet();
+  checkLocalFeatureEnvironment();
+  spaceId = getSpaceId(envVars);
+  varsString = `--access-token ${envVars.accessToken} --space-id ${envVars.spaceId} --environment-id ${envVars.environmentId}`;
+  try {
+    const inited = await initMigration();
+    if (inited) {
+      logMigrationTypeInited();
+    }
+  } catch (error) {
+    logMigrationTypeInited();
+  }
+
+  try {
+    console.log('Beginning migration dry run');
+    await runDryRun();
+  } catch (error) {
+    console.log(`Dry Run Migration Error: ${error}`);
+    process.exit(1);
+  }
+  try {
+    console.log('Beginning migration');
+    await runMigration();
+  } catch (error) {
+    console.log(`Run Migration Error: ${error}`);
+    process.exit(1);
+  }
+};
+
+const bindEvents = () => {
+  process.on('uncaughtException', error => {
+    console.error(error);
+    process.exit(1);
+  });
+};
+
+const checkEnvVarsAreSet = () => {
   const envVarsAreSet = validateEnvVars(envVars);
   if (!envVarsAreSet) {
     console.log(
-      `contentful-migrate: at least one environmental variable is missing.`
+      `contentful-migrate: at least one environmental variable is missing: ${envVars}`
     );
-    console.log(envVars);
-    return;
+    process.exit(1);
   }
-  varsString = `--access-token ${envVars.accessToken} --space-id ${envVars.spaceId} --environment-id ${envVars.environmentId}`;
-  const inited = await initMigration().catch(logMigrationTypeInited);
-  if (inited) {
-    logMigrationTypeInited();
+};
+
+const checkLocalFeatureEnvironment = () => {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    ['master', 'staging', 'qa'].includes(envVars.environmentId)
+  ) {
+    console.log(
+      'Migration scripts should be tested locally on a feature environment (not directly on qa, staging or master). Type `npm run create-contentful-loyalty-environment --name="[NEW ENVIRONMENT NAME]"` to create one.'
+    );
+    process.exit(1);
   }
-  await runMigration().catch(error =>
-    console.log('Run Migration Error: ', error)
-  );
 };
 
 const logMigrationTypeInited = () =>
@@ -49,14 +90,19 @@ const initMigration = () =>
     });
   });
 
-const runMigration = () =>
+const runDryRun = async () => await runMigration(true);
+
+const runMigration = (dryRun = false) =>
   new Promise((resolve, reject) => {
-    const cliCommand = `ctf-migrate up ${varsString} --all`;
+    const dryRunFlag = dryRun ? ` --dry-run=true` : ``;
+    const cliCommand = `ctf-migrate up ${varsString} --all${dryRunFlag}`;
     exec(cliCommand, (error, stdout, stderr) => {
       if (error) {
+        console.log(error);
         reject(error);
       }
       if (stderr) {
+        console.log(stderr);
         reject(stderr);
       }
       console.log(stdout);
