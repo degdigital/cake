@@ -1,0 +1,32 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { default as Button } from './index.js';
+
+<Meta title="Basics/Buttons" component={Button} />
+
+export const baseStyles = {
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-around',
+  padding: '2rem'
+};
+
+# Button
+
+<Preview>
+  <Story name="Primary Button">
+    <div style={baseStyles}>
+      <Button label="Primary Button" />
+      <Button label="Disabled" disabled={true} />
+    </div>
+  </Story>
+  <Story name="Primary Button - Dark">
+    <div style={{ ...baseStyles, background: '#333' }}>
+      <Button label="Primary Button" darkBg={true} />
+      <Button label="Disabled" darkBg={true} disabled={true} />
+    </div>
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Button} />

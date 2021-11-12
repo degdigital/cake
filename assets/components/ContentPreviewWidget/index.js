@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Button, TriangleTooltip } from '@components';
+import { Button } from '@components';
 import Tooltip from '@reach/tooltip';
 import styles from './ContentPreviewWidget.module.css';
 
